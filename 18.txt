@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) 
+    {
+        if(nums.size() < 4)
+            return {};
+        std::sort(nums.begin(),nums.end());
+        std::set<std::vector<int>> ans;
+        for(int i = 0; i < nums.size() - 2;++i)
+        {
+            target -= nums[i];
+            for(int j = i + 1;j < nums.size()-1 ;++j)
+            {
+                int k = j + 1;
+                int m = nums.size()-1;
+                while(k < m)
+                {
+                    if(((long long)nums[j] + nums[k] + nums[m]) == (long long)target)
+                        ans.insert({nums[i],nums[j],nums[k],nums[m]}), ++k, --m;
+                    else if(((long long)nums[j] + nums[k] + nums[m]) < (long long)target)
+                        ++k;
+                    else
+                        --m;
+                }
+            }
+            target += nums[i];
+        }
+        std::vector<std::vector<int>> res;
+        for(auto elem:ans)
+            res.push_back(elem);
+        return res;
+    }
+};
