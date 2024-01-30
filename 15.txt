@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) 
+    {
+        std::sort(nums.begin(),nums.end());
+        std::set<std::vector<int>> ans;
+        for(int i = 0; i < nums.size()-2;++i)
+        {
+            int j = i + 1;
+            int k = nums.size()-1;
+            while(j < k)
+            {
+                if(!(nums[i] + nums[j] + nums[k]))
+                    ans.insert({nums[i],nums[j],nums[k]}),++j,--k;
+                else if((nums[i] + nums[j] + nums[k]) < 0)
+                    ++j;
+                else 
+                    --k;
+            }
+        }
+        std::vector<std::vector<int>> res;
+        for(auto& elem: ans)
+            res.push_back(elem);
+        return res;
+    }
+};

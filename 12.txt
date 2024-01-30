@@ -1,0 +1,11 @@
+class Solution {
+public:
+    string intToRoman(int num) 
+    {
+        std::vector<std::string> miavor {"","I","II","III","IV","V","VI","VII","VIII","IX"};
+        std::vector<std::string> tasnavor {"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
+        std::vector<std::string> haryuravor {"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
+        std::vector<std::string> hazaravor {"","M","MM","MMM"};
+        return hazaravor[num/1000] + haryuravor[(num/100)%10] + tasnavor[(num/10)%10] + miavor[num%10];
+    }
+};
