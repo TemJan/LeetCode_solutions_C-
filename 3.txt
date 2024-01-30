@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) 
+    {
+        std::vector<std::string> ans;
+        for(int j = 0; j < s.size(); ++j)
+        {
+            std::set<char> sym;
+            std::string str = "";
+            for(int i = j; i < s.size(); ++i)
+            {
+                str += s[i];
+                sym.insert(s[i]);
+                if(str.size() != sym.size())
+                {
+                    str.pop_back();
+                    break;
+                }
+            }
+            ans.push_back(str);
+            if(s.size() == str.size())
+                return s.size();
+        }
+        int max = 0;
+        for(auto elem: ans)
+        {
+            if(elem.size()>max)
+                max = elem.size();
+        }
+        return max;
+    }
+};
