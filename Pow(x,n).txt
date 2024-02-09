@@ -1,0 +1,17 @@
+class Solution {
+public:
+    double myPow(double x, int n) 
+    {
+        long double result = 1;
+        int copy = n;
+        n = abs(n);
+        while(n)
+        {
+            if(n&1)
+                result *= x;
+            x *= x;
+            n /=  2;
+        }    
+        return copy < 0 ? 1 /result : result;
+    }
+};
