@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+#include <stack>
+//Մուտքում տրվում է ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ և ‘]’ սիմվոներից բաղկացած հաջորդականություն, պահանջվում է արտածել YES, 
+//եթե այն փակագծերի ճիշտ արտահայտություն է և NO՝ հակառակ դեպքում։
+bool check(std::string str)
+{
+    std::stack<char> s;
+    for (auto elem : str)
+    {
+        if (elem == '(' or elem == '{' or elem == '[')
+            s.push(elem);
+        else if (elem == ')' and (s.empty() or s.top() != '('))
+            return false;
+        else if (elem == '}' and (s.empty() or s.top() != '{'))
+            return false;
+        else if (elem == ']' and (s.empty() or s.top() != '['))
+            return false;
+        else
+            s.pop();
+    }
+    return s.empty();
+}
+
+int main()
+{
+    std::string str;
+    std::cin >> str;
+    if (check(str))
+        std::cout << "YES";
+    else
+        std::cout << "NO";
+}
