@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& inter) 
+    {
+       std::sort(inter.begin(),inter.end());
+       std::vector<std::vector<int>> arr;
+       for(auto elem:inter)
+       {
+            if(arr.empty() or arr.back()[1] < elem[0])
+                arr.push_back(elem);
+            else
+                arr.back()[1] = std::max(arr.back()[1],elem[1]);
+       }
+       return arr;
+    }
+};
