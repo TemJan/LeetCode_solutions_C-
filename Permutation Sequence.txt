@@ -1,0 +1,35 @@
+class Solution {
+public:
+    string getPermutation(int n, int k) 
+    {
+        int factorial = 1;
+        std::vector<int> arr(n);
+        for(int i = 1; i < n; ++i)
+            factorial *= i, arr[i-1] = i;
+        arr[n-1] = n;
+        --k;
+        std::string result = "";
+        while(true)
+        {
+            result += std::to_string(arr[k/factorial]);
+            arr.erase(arr.begin() + k/factorial);
+            if(!arr.size())
+                break;
+            k = k % factorial;
+            factorial /= arr.size();
+        }
+        return result;
+        /*
+        std::string str;
+        for(int i = 1; i <= n; ++i)
+            str += std::to_string(i);
+        if(k == 0)
+            return str;
+        --k;
+        do
+        {
+            
+        }while(std::next_permutation(str.begin(),str.end()) and --k);
+        return str;*/
+    }
+};
