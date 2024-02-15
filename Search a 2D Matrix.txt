@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) 
+    {
+        int row = 0;
+        int left = 0, right = matrix.size() - 1;
+        int mid = (left + right)/2;
+        while(left <= right)
+        {
+            if(matrix[mid][0] <= target and target <= matrix[mid][matrix[0].size()-1])
+                break;
+            else if(target < matrix[mid][0])
+                right = mid - 1;
+            else if(target > matrix[mid][matrix[0].size()-1])
+                left = mid + 1;
+            mid = (left + right)/2;
+        }
+        left = 0, right = matrix[0].size() - 1;
+        int temp = (left + right)/2;
+        while(left <= right)
+        {
+            if(matrix[mid][temp] == target)
+                return true;
+            else if(matrix[mid][temp] > target)
+                right = temp - 1;
+            else
+                left = temp + 1;
+            temp = (left + right)/2;
+        }
+        return false;
+    }
+};
